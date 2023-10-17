@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+//Base class
 class healthActivity {
 private:
     std::string name;
@@ -78,11 +79,11 @@ int main() {
         std::cout << "Enter running distance: ";
         std::cin >> running;
 
-        // Create a healthActivity object and add it to the vector
+        // Created a healthActivity object and added it to the vector
         people.push_back(healthActivity(steps, walking, running, name));
     }
 
-    // Print the details of all people
+    // This prints all the details of all people along with their steps + walking and running distances
     for (const healthActivity& person : people) {
         std::cout << "Name: " << person.getName() << std::endl;
         std::cout << "Steps: " << person.getSteps() << std::endl;
