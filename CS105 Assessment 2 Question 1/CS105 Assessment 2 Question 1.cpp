@@ -6,25 +6,18 @@
 #include <string>
 #include <vector>
 
-// Base class
 class healthActivity {
 private:
     std::string name;
     int steps;
-    double walking;
-    double running;
-    double combinedDistance;
+    double distance; // Combined walking and running distance
 
 public:
-    // Default constructor
-    healthActivity() : steps(0), walking(0.0), running(0.0), combinedDistance(0.0) {}
+    healthActivity() : steps(0), distance(0.0) {}
 
-    healthActivity(int s, double w, double r, const std::string& n)
-        : steps(s), walking(w), running(r), name(n) {
-        combinedDistance = w + r;
-    }
+    healthActivity(const std::string& n, int s, double d)
+        : name(n), steps(s), distance(d) {}
 
-    // Getter methods
     std::string getName() const {
         return name;
     }
@@ -33,19 +26,10 @@ public:
         return steps;
     }
 
-    double getWalking() const {
-        return walking;
+    double getDistance() const {
+        return distance;
     }
 
-    double getRunning() const {
-        return running;
-    }
-
-    double getCombinedDistance() const {
-        return combinedDistance;
-    }
-
-    // Setter methods
     void setName(const std::string& n) {
         name = n;
     }
@@ -54,32 +38,41 @@ public:
         steps = s;
     }
 
-    void setWalking(double w) {
-        walking = w;
-    }
-
-    void setRunning(double r) {
-        running = r;
+    void setDistance(double d) {
+        distance = d;
     }
 };
 
-// Function to calculate and display the average combined distance
-double calculateAverageCombinedDistance(const std::vector<healthActivity>& people) {
-    double totalCombinedDistance = 0.0;
+double calculateAverageSteps(const std::vector<healthActivity>& people) {
+    int totalSteps = 0;
 
     for (const healthActivity& person : people) {
-        totalCombinedDistance += person.getCombinedDistance();
+        totalSteps += person.getSteps();
     }
 
     if (people.size() > 0) {
-        return totalCombinedDistance / people.size();
+        return static_cast<double>(totalSteps) / people.size();
     }
 
-    return 0.0; // Used this to avoid division by zero
+    return 0.0; // Avoid division by zero
+}
+
+double calculateAverageDistance(const std::vector<healthActivity>& people) {
+    double totalDistance = 0.0;
+
+    for (const healthActivity& person : people) {
+        totalDistance += person.getDistance();
+    }
+
+    if (people.size() > 0) {
+        return totalDistance / people.size();
+    }
+
+    return 0.0; // Avoid division by zero
 }
 
 int main() {
-    std::vector<healthActivity> people; // Vector of healthActivity objects 
+    std::vector<healthActivity> people;
     const int maxPeople = 5;
 
     for (int i = 0; i < maxPeople; ++i) {
@@ -93,33 +86,29 @@ int main() {
         std::cout << "Enter the number of steps: ";
         std::cin >> steps;
 
-        double walking;
-        std::cout << "Enter walking distance: ";
-        std::cin >> walking;
+        double distance;
+        std::cout << "Enter combined walking and running distance (km): ";
+        std::cin >> distance;
 
-        double running;
-        std::cout << "Enter running distance: ";
-        std::cin >> running;
-
-        // Created a healthActivity object and added it to the vector
-        people.push_back(healthActivity(steps, walking, running, name));
+        people.push_back(healthActivity(name, steps, distance));
     }
 
-    // This prints all the details of all people along with their steps + walking and running distances
     for (const healthActivity& person : people) {
         std::cout << "Name: " << person.getName() << std::endl;
         std::cout << "Steps: " << person.getSteps() << std::endl;
-        std::cout << "Walking distance (km): " << person.getWalking() << std::endl;
-        std::cout << "Running distance (km): " << person.getRunning() << std::endl;
-        std::cout << "Combined distance (km): " << person.getCombinedDistance() << std::endl;
+        std::cout << "Combined distance (km): " << person.getDistance() << std::endl;
         std::cout << "-------------------------\n";
     }
-//Averages out the combined distance of all steps, walking and running done.
-    double averageCombinedDistance = calculateAverageCombinedDistance(people);
-    std::cout << "Average Combined Distance (km): " << averageCombinedDistance << std::endl;
+
+    double averageSteps = calculateAverageSteps(people);
+    std::cout << "Average Steps: " << averageSteps << std::endl;
+
+    double averageDistance = calculateAverageDistance(people);
+    std::cout << "Average Combined Distance (km): " << averageDistance << std::endl;
 
     return 0;
 }
+
 
     
 
