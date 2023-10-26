@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 
+//Base class for the app 
 class healthActivity {
 private:
     std::string name;
@@ -43,6 +44,7 @@ public:
     }
 };
 
+//This allows for the calculation and display of the average steps by the users
 double calculateAverageSteps(const std::vector<healthActivity>& people) {
     int totalSteps = 0;
 
@@ -56,7 +58,7 @@ double calculateAverageSteps(const std::vector<healthActivity>& people) {
 
     return 0.0; // Avoid division by zero
 }
-
+//This allows for the calculation and display of the average distance by the users
 double calculateAverageDistance(const std::vector<healthActivity>& people) {
     double totalDistance = 0.0;
 
@@ -70,7 +72,7 @@ double calculateAverageDistance(const std::vector<healthActivity>& people) {
 
     return 0.0; // Avoid division by zero
 }
-
+//main part of program allowing for input of users and their steps and distance
 int main() {
     std::vector<healthActivity> people;
     const int maxPeople = 5;
