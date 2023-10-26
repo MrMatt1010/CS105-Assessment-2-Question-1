@@ -1,6 +1,6 @@
 // CS105 Assessment 2 Question 1
 // Student Name: Matt Taylor
-// This program will allow up to 5 people to track their steps as per the brief
+// This program will allow up to 5 people to track their steps and get the average of all steps as per the brief
 
 #include <iostream>
 #include <string>
@@ -75,7 +75,7 @@ double calculateAverageCombinedDistance(const std::vector<healthActivity>& peopl
         return totalCombinedDistance / people.size();
     }
 
-    return 0.0; // Use this to avoid division by zero
+    return 0.0; // Used this to avoid division by zero
 }
 
 int main() {
@@ -114,7 +114,7 @@ int main() {
         std::cout << "Combined distance (km): " << person.getCombinedDistance() << std::endl;
         std::cout << "-------------------------\n";
     }
-
+//Averages out the combined distance of all steps, walking and running done.
     double averageCombinedDistance = calculateAverageCombinedDistance(people);
     std::cout << "Average Combined Distance (km): " << averageCombinedDistance << std::endl;
 
