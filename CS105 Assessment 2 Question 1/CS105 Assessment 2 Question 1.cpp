@@ -18,7 +18,7 @@ public:
 
     healthActivity(const std::string& n, int s, double d)
         : name(n), steps(s), distance(d) {}
-
+//Getters
     std::string getName() const {
         return name;
     }
@@ -30,7 +30,7 @@ public:
     double getDistance() const {
         return distance;
     }
-
+//Setters
     void setName(const std::string& n) {
         name = n;
     }
@@ -94,7 +94,7 @@ int main() {
 
         people.push_back(healthActivity(name, steps, distance));
     }
-
+//Display of persons name and steps with combined distance
     for (const healthActivity& person : people) {
         std::cout << "Name: " << person.getName() << std::endl;
         std::cout << "Steps: " << person.getSteps() << std::endl;
